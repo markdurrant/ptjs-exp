@@ -1,7 +1,7 @@
 var space = new CanvasSpace("canvas", "#f1f1f1", "2d").display("#pt");
 var form = new Form(space).fill("#33e").stroke(false);
 
-var numDots = 10;
+var numDots = 400;
 var numCandidates = 10;
 
 var dots = [new Vector(Math.random() * space.size.x, Math.random() * space.size.y)];
@@ -21,10 +21,21 @@ function closest(vector, vectorArray) {
 }
 
 for (d = 0; d < numDots; d++) {
+  var bestCandidate, bestDistance = 0;
+
   for (c = 0; c < numCandidates; c++) {
     var candidate = new Vector(Math.random() * space.size.x, Math.random() * space.size.y);
+    var distance =  candidate.distance(closest(candidate, dots));
+    if (distance > bestDistance) {
+      bestDistance = distance;
+      bestCandidate = candidate;
+    }
   }
+
+  dots.push(bestCandidate);
 }
+
+console.log(dots);
 
 var drawBot = {
   animate: function (time, fs, context) {
