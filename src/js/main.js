@@ -10,7 +10,7 @@ function closest(vector, vectorArray) {
   var closest;
   var distance = space.size.x * space.size.y;
 
-  for(v = 0; v < vectorArray.length; v++) {
+  for( var v = 0; v < vectorArray.length; v++) {
     if(vector.distance(vectorArray[v]) < distance) {
       distance = vector.distance(vectorArray[v]);
       closest = vectorArray[v];
@@ -20,10 +20,10 @@ function closest(vector, vectorArray) {
   return closest;
 }
 
-for (d = 0; d < numDots; d++) {
+for( var d = 0; d < numDots; d++) {
   var bestCandidate, bestDistance = 0;
 
-  for (c = 0; c < numCandidates; c++) {
+  for( var c = 0; c < numCandidates; c++) {
     var candidate = new Vector(Math.random() * space.size.x, Math.random() * space.size.y);
     var distance =  candidate.distance(closest(candidate, dots));
     if (distance > bestDistance) {
@@ -39,11 +39,11 @@ console.log(dots);
 
 var drawBot = {
   animate: function (time, fs, context) {
-    for (i = 0; i < dots.length; i++) {
+    for( var i = 0; i < dots.length; i++) {
       form.circle(new Circle(dots[i]).setRadius(2));
     }
   }
-}
+};
 
 space.add(drawBot);
 space.play();
